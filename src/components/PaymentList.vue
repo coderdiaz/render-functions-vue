@@ -4,8 +4,10 @@
       class="payment__item"
       v-for="(payment, index) in payments"
       :key="index">
-        <span>Price:</span> {{ payment.price }} {{ payment.currencyType }}
-        <span>Payee:</span> {{ payment.payee }}
+        <template v-if="payment.currencyType === currency">
+          <span>Price:</span> {{ payment.price }} {{ payment.currencyType }}
+          <span>Payee:</span> {{ payment.payee }}
+        </template>
       </li>
   </ul>
 </template>

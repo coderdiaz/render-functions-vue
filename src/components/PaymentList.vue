@@ -2,12 +2,10 @@
   <ul class="payment__list">
     <li
       class="payment__item"
-      v-for="(payment, index) in payments"
+      v-for="(payment, index) in filteredPayments"
       :key="index">
-        <template v-if="payment.currencyType === currency">
-          <span>Price:</span> {{ payment.price }} {{ payment.currencyType }}
-          <span>Payee:</span> {{ payment.payee }}
-        </template>
+        <span>Price:</span> {{ payment.price }} {{ payment.currencyType }}
+        <span>Payee:</span> {{ payment.payee }}
       </li>
   </ul>
 </template>
@@ -40,6 +38,11 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    filteredPayments() {
+      return this.payments.filter(payment => payment.currencyType === this.currency);
+    },
   },
 };
 </script>

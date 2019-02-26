@@ -28,21 +28,17 @@ export default {
       ],
     };
   },
-  render(h) {
-    return h('ul', {
-      class: 'payment__list',
-    }, [
-      this.payments
+  render() {
+    const filteredPayments = this.payments
       .filter(payment => payment.currencyType === this.currency)
-      .map(payment => h('li', {
-        class: 'payment__item',
-      }, [
-        h('span', 'Price: '),
-        `${payment.price} ${payment.currencyType} `,
-        h('span', 'Payee: '),
-        payment.payee,
-      ])),
-    ]);
+      .map(payment => <li class="payment__item">
+        <span>Price: </span> {payment.price} {payment.currencyType}
+        <span>Payee: </span> {payment.payee}
+      </li>);
+
+    return <ul class="payment__list">
+      {filteredPayments}
+    </ul>;
   },
 };
 </script>
